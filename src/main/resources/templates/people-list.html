@@ -1,0 +1,55 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>People list</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-around">
+        <div class="col-md-8">
+            <div class="panel panel-default user_panel">
+                <div class="panel-heading bg-warning" STYLE="text-align: center;">
+                    <h3 class="panel-title">FAVORITES</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-container">
+                        <table class="table-users table" border="0">
+                            <tbody>
+                            <tr th:each="user: ${users}" th:onclick="'location.href = \'/chat/' + ${user.getId()} + '\''" class="bg-danger">
+                                <td>
+                                    <div class="avatar-img">
+                                        <img class="img-circle" th:src="${user.getUrl()}">  
+                                    </div>
+                                </td>
+                                <td class="align-middle" th:text="${user.name + ' ' + user.surname}">
+                                </td>
+                                <td class="align-middle" th:text="${user.status}">
+                                </td>
+                                <td class="align-middle" th:text="${user.lastSeen}">
+                                    Last Login:
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
