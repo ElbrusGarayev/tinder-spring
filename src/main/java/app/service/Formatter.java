@@ -9,7 +9,7 @@ public class Formatter {
     public String getIdFromPath(String path){
         return path.chars()
                 .filter(at -> Character.isDigit(at))
-                .mapToObj(Character::toString)
-                .collect(Collectors.joining(""));
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint,
+                        StringBuilder::append).toString();
     }
 }
