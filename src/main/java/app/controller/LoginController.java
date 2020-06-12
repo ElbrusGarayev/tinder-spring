@@ -28,9 +28,10 @@ public class LoginController {
 
     @PostMapping
     String handle_login(Model model, User user, HttpServletRequest req){
-        User loggedUser = userService.getCurrentUser(user.getEmail(), enc.encrypt(user.getPassword())).get();
         HttpSession session = req.getSession();
         if (userService.loginChecking(user.getEmail(), enc.encrypt(user.getPassword()))){{
+            User loggedUser = userService
+                    .getCurrentUser(user.getEmail(), enc.encrypt(user.getPassword())).get();
             session.setAttribute("user", loggedUser);
             userService.updateLastSeen(loggedUser.getId());
             return "redirect:/users";
